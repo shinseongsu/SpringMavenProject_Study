@@ -77,18 +77,18 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView login(@ModelAttribute("member") MemberVO member,
 				              RedirectAttributes rAttr,
 		                       HttpServletRequest request, HttpServletResponse response) throws Exception {
-	ModelAndView mav = new ModelAndView();
-	memberVO = memberService.login(member);
-	if(memberVO != null) {
-		    HttpSession session = request.getSession();
-		    session.setAttribute("member", memberVO);
-		    session.setAttribute("isLogOn", true);
-		    mav.setViewName("redirect:/member/listMembers.do");
-	}else {
-		    rAttr.addAttribute("result","loginFailed");
-		    mav.setViewName("redirect:/member/loginForm.do");
-	}
-	return mav;
+		ModelAndView mav = new ModelAndView();
+		memberVO = memberService.login(member);
+		if(memberVO != null) {
+			    HttpSession session = request.getSession();
+			    session.setAttribute("member", memberVO);
+			    session.setAttribute("isLogOn", true);
+			    mav.setViewName("redirect:/member/listMembers.do");
+		}else {
+			    rAttr.addAttribute("result","loginFailed");
+			    mav.setViewName("redirect:/member/loginForm.do");
+		}
+		return mav;
 	}
 
 	@Override
